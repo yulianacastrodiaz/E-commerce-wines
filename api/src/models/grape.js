@@ -15,11 +15,12 @@ module.exports = (sequelize) => {
       validate: {
         notNull: {
           msg: "La uva no debe estar vacía"
-        },
-        isAlpha: {
-          msg: "La uva debe ser exclusivamente de caracteres alfabéticos",
         }
       }
     }
+  },{
+    timestamps: true,
+    createdAt: true,
+    updatedAt: false,
   })
 } 
