@@ -1,4 +1,4 @@
-const { Categorie } = require('../db')
+const { Category } = require('../db')
 
 function preloadCategories(){
   const categories = [{
@@ -11,7 +11,7 @@ function preloadCategories(){
 
   try {
     const newCategories = categories.map(async(c) => {
-      await Categorie.create({
+      await Category.create({
         name: c.name
       })
     })

@@ -1,6 +1,6 @@
-const { SubCategorie } = require('../db')
+const { SubCategory } = require('../db')
 
-function preloadSubCategorie(){
+function preloadSubCategories(){
   const subCategories = [{
     type: "red"
   },{
@@ -11,7 +11,7 @@ function preloadSubCategorie(){
 
   try {
     const newSubCategories = subCategories.map(async(s) => {
-      await SubCategorie.create({
+      await SubCategory.create({
         type: s.type
       })
     })
@@ -25,4 +25,4 @@ function preloadSubCategorie(){
   }
 }
 
-module.exports = preloadSubCategorie;
+module.exports = preloadSubCategories;
