@@ -15,6 +15,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        notNull: {
+          msg: "La categoría no debe estar vacía"
+        },
+        isAlpha: {
+          msg: "La categoría debe ser exclusivamente de caracteres alfabéticos",
+        }
+      }
     }
   })
 };
