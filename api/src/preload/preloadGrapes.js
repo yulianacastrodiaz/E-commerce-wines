@@ -11,6 +11,10 @@ function preloadGrapes(){
     name: "Merlot"
   },{
     name: "Syrah"
+  },{
+    name: "Malbec"
+  },{
+    name: "Torrontes"
   }]
 
   try {
