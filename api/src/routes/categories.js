@@ -7,32 +7,17 @@ router.get('/', async(req, res) => {
   const { name } = req.query
   try {
     if (name) {
-      const categorie = await Category.findOne({ where: { name }, include: SubCategory })
+      const categorie = await Category.findOne({ where: { name } })
       if (categorie) {
         res.json(categorie)
       } else {
         res.status(404).json({msg: `No se encontró la categoria ${name}`})
       }
     } else {
-      const allCategories = await Category.findAll({include: SubCategory});
+      const allCategories = await Category.findAll();
       res.json(allCategories)
     }
   } catch (error) {
-    res.status(404).json(error)
-  }
-});
-
-router.post('/', async (req, res) => {
-  const { name } = req.body;
-  try {
-    if (name) {
-      const newCategory = await Category.create({
-        name
-      })
-      res.json(newCategory)
-    }
-  } catch (error) {
-    console.log(error);
     res.status(404).json(error)
   }
 });
