@@ -19,7 +19,7 @@ const Cards = () => {
       discount: 15,
     },
     {
-      name: "Vino 4",
+      name: "Yuli",
       price: 14.99,
       discount: 14,
     },
