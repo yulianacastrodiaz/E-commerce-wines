@@ -11,15 +11,12 @@ function preloadSubCategories(){
 
   try {
     const newSubCategories = subCategories.map(async(s) => {
-      await SubCategory.create({
+      return await SubCategory.create({
         type: s.type
       })
     })
 
-    Promise.all(newSubCategories)
-      .then(() => {
-        return console.log("precarga de subCategorias: done :)")
-      })
+    return Promise.all(newSubCategories)
   } catch (error) {
     return console.log(error)
   }
