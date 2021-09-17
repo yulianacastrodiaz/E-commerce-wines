@@ -7,25 +7,25 @@ const Creation = () => {
 
             <form>
 
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Name:</span>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Name:</span>
                     </label>
-                    <input type="text" placeholder="name" class="input input-bordered"/>
+                    <input type="text" placeholder="name" className="input input-bordered"/>
                 </div>
 
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Description:</span>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Description:</span>
                     </label>
-                    <textarea type="textarea" placeholder="description" class="input input-bordered"/>
+                    <textarea type="textarea" placeholder="description" className="input input-bordered"/>
                 </div>
 
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Price:</span>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Price:</span>
                     </label>
-                    <input type="number" placeholder="price" class="input input-bordered"/>
+                    <input type="number" placeholder="price" className="input input-bordered"/>
                 </div>
 
                 <label>
