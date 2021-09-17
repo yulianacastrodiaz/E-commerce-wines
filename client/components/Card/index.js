@@ -1,22 +1,26 @@
 import React from "react";
 
-const Card = () => {
+const Card = ({ price, name, img, discount }) => {
+  const priceDis = price - price * (discount / 100);
   return (
     <>
-      <div className="relative border bg-white border-gray-200 rounded-xl">
+      <div className="relative border bg-white border-purple-900 rounded-xl">
         <span className="absolute top-0 left-0 text-sm btn-primary p-2 rounded-br-xl rounded-tl-xl">
-          19% OFF
+          {discount || 19}% OFF
         </span>
         <img
           className="max-h-52 w-full bg-white object-contain rounded-t-xl"
-          src="https://www.nicepng.com/png/detail/695-6953710_botella-de-vino-png.png"
+          src={
+            img ||
+            "https://www.nicepng.com/png/detail/695-6953710_botella-de-vino-png.png"
+          }
           alt=""
         />
         <div className="p-5">
-          <h2 className="text-lg">El matador</h2>
+          <h2 className="text-lg">{name || "Soy un vino"}</h2>
           <h4 className="text-gray-500 text-sm">
-            $18.99{" "}
-            <span className="line-through text-sm text-red-500">$15.99</span>
+            ${priceDis.toFixed(2)}{" "}
+            <span className="line-through text-sm text-red-500">${price}</span>
           </h4>
         </div>
         <div className="flex">

@@ -1,20 +1,50 @@
 import React from "react";
-import Card from "../Card/Card";
+import Card from "../Card";
 
 const Cards = () => {
+  const card = [
+    {
+      name: "Vino 1",
+      price: 11.99,
+      discount: 17,
+    },
+    {
+      name: "Vino 2",
+      price: 12.99,
+      discount: 16,
+    },
+    {
+      name: "Vino 3",
+      price: 13.99,
+      discount: 15,
+    },
+    {
+      name: "Vino 4",
+      price: 14.99,
+      discount: 14,
+    },
+    {
+      name: "Vino 5",
+      price: 15.99,
+      discount: 13,
+    },
+    {
+      name: "Vino 6",
+      price: 16.99,
+      discount: 12,
+    },
+    {
+      name: "Vino 7",
+      price: 17.99,
+      discount: 11,
+    },
+  ];
   return (
     <div>
-      <div className="p-10 grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5 w-screen h-scren bg-black align-middle">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      <div className="p-10 grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5 w-screen h-scren align-middle">
+        {card.map((e) => (
+          <Card key={e.name} name={e.name} price={e.price} discount={e.discount} />
+        ))}
       </div>
     </div>
   );
