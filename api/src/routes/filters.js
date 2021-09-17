@@ -43,5 +43,4 @@ res.json(`esperese mijito que esta ruta aun no funciona`)
 })
 
 
-
 module.exports = router;
