@@ -4,17 +4,17 @@ import Card from "../Card";
 const Cards = () => {
   const card = [
     {
-      name: "Vino 1",
+      name: "Kevin",
       price: 11.99,
       discount: 17,
     },
     {
-      name: "Vino 2",
+      name: "Gaby",
       price: 12.99,
       discount: 16,
     },
     {
-      name: "Vino 3",
+      name: "Agus",
       price: 13.99,
       discount: 15,
     },
