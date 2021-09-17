@@ -15,15 +15,12 @@ function preloadGrapes(){
 
   try {
     const newGrapes = graps.map(async(g) => {
-      await Grape.create({
+      return await Grape.create({
         name: g.name
       })
     })
   
-    Promise.all(newGrapes)
-      .then(() => {
-        return console.log("precarga de uvas: done :)")
-      })
+   return Promise.all(newGrapes)
   } catch (error) {
     return console.log(error)
   }
