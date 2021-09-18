@@ -51,3 +51,5 @@ router.post('/delete/:name', async (req, res) => {
    }
    res.send('Videogame has been deleted');
  });  
+
+module.exports = router;
