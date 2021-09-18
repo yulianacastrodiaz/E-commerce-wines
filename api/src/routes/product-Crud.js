@@ -21,20 +21,19 @@ router.post('/', async (req, res) => {
 
    try{
       //Find Category
-      var categoryWine = await Category.findOne({
+      var categoryProd = await Category.findOne({
          where: {name: category} 
       }) 
-      if (categoryWine === null) {
+      if (categoryProd === null) {
          errmsg.cat='Invalid Category'
       }
+      var subCatProd = await SubCategory.findOne({
+         where: {type: subcategory}
+      })
+      if (subCatProd === null) {
+         errmsg.subcat='Invalid SubCategory' 
+      }
       if (category === 'wines') {
-         // Find SubCategory
-         var subCategoryWine = await SubCategory.findOne({
-            where: {type: subcategory}
-         })
-         if (subCategoryWine === null) {
-            errmsg.subcat='Invalid SubCategory' 
-         }
          // Find Grape
          var grapes = await Grape.findOne({
              where: {name: grape}
@@ -55,10 +54,10 @@ router.post('/', async (req, res) => {
        picture
      })      
     
-    await categoryWine.addProduct(newproduct)
+    await categoryProd.addProduct(newproduct)
+    await subCatProd.addProduct(newproduct)
     if (category === 'wines') {
-       await subCategoryWine.addProduct(newproduct)
-       await grapes.addProduct(newproduct)
+        await grapes.addProduct(newproduct)
     }   
    } catch (error) {
       res.send(`Error in route /product ${error}`);
@@ -71,7 +70,7 @@ router.delete('/:id', async (req, res) => {
    const { id } = req.params;
    try {
     const elem = await Product.destroy({
-       where: {id: id}
+       where: {id: parseInt(id)}
     });
    } catch (error) {
        res.send(`Error in route.delete /product/:id ${error}`);
