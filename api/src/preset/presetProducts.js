@@ -36,7 +36,6 @@ async function presetProduct(){
   } catch (error) {
     return console.log(error)
   }
-  
 }
 
 module.exports = presetProduct;
