@@ -1,6 +1,6 @@
 import React from "react";
 
-const Filter = ({ category, options, state, func }) => {
+const Filter = ({ category, options, func }) => {
   return (
     <div className="align-middle flex justify-center pl-5">
       <div className="dropdown">
