@@ -49,12 +49,12 @@ router.get('/grape', async (req, res) => {
 })
 
 
-router.get('/product', async (req,res)=>{
+router.get('/product', async (req, res) => {
     try {
         let prod = await Product.findAll()
         res.json(prod)
     }
-    catch (error) {res.status(404).json(error)}
+    catch (error) { res.status(404).json(error) }
 })
 
 
@@ -74,21 +74,26 @@ router.get('/', async (req, res) => {
         let { year } = req.query
         //devuelve ordenados por el raiting especifico de cada producto
         let { rating } = req.query
-        
+
         //════════════════════════════════════════════════════════════════════════════
         //FILTROS ESPECIFICOS
-        //devuelve ordenado por az
+        //Para utilizar estos filtros se usan query, se usa el key y las opciones de value
+        //especificadas en cada caso
+
+        //devuelve ordenado por az o za 
         let { az } = req.query
-        //devuelve ordenado por za
-        let { za } = req.query
-        //devuelve ordenados desde el mas costoso al mas barato
-        let { expensive } = req.query
-        //devuelve ordenados desde el mas economico al mas costoso
-        let { cheap } = req.query
-        //devuelve ordenados por el más nuevo primero (años cercanos) 
-        let { neu } = req.query
-        //devuelve ordenados por el más antiguo primero (años lejanos) 
-        let { old } = req.query
+
+        //devuelve ordenados  por precio
+        //expensive = desde el mas costoso al mas barato
+        //cheap = el mas economico al mas costoso
+        let { money } = req.query
+
+        //devuelve ordenadoas por año
+        //new = más  recientes primeros
+        //old = más antiguos primeros
+        let { age } = req.query
+
+
         // se le pasa un precio y devuelve los de ese precio y $100 hacia arriba y hacia abajo
         let { rank } = req.query
 
@@ -129,6 +134,70 @@ router.get('/', async (req, res) => {
             let byRating = await prod.filter(p => p.rating === rating)
             return (byRating.length > 0) ? res.json(byRating)
                 : res.status(404).json(`No encontramos coincidencia exacta de un producto con el rating ${rating}`)
+        }
+
+        if (az) {
+            az = az.toLowerCase();
+            if (az === "az") {
+                let azName = await prod.sort(function (n1, n2) {
+                    return (n1.name > n2.name) ? 1
+                        : (n2.name > n1.name) ? -1
+                            : 0
+                })
+                return res.json(azName)
+            }
+            if (az === "za") {
+                let zaName = await prod.sort(function (n1, n2) {
+                    return (n1.name > n2.name) ? -1
+                        : (n2.name > n1.name) ? 1
+                            : 0
+                })
+                return res.json(zaName)
+            }
+
+            return res.status(404).json(`El value ${az} no esta seteado, revisalo e intenta nuevamente
+            o dirijete a api/src/routes/filters.js linea 133 para mas detalles
+            o contacta con el grupo de backend`)
+        }
+
+        if (money) {
+            money = money.toLowerCase();
+            if (money === "expensive") {
+                let expensive = await prod.sort(function (p1, p2) {
+                    return p2.price - p1.price
+                })
+                return res.json(expensive)
+            }
+            if (money === "cheap") {
+                let cheap = await prod.sort(function (p1, p2) {
+                    return p1.price - p2.price
+                })
+                return res.json(cheap)
+            }
+
+            return res.status(404).json(`El value ${money} no esta seteado, revisalo e intenta nuevamente
+            o dirijete a api/src/routes/filters.js linea 162 para mas detalles
+            o contacta con el grupo de backend`)
+        }
+
+        if(age){
+            age = age.toLowerCase();
+            if(age === "new"){
+                let nuevo = await prod.sort(function (e1, e2){
+                    return e2.year - e1.year 
+                })
+                return res.json(nuevo)
+            }
+            if(age === "old"){
+                let viejo = await prod.sort(function (e1, e2){
+                    return e1.year - e2.year
+                })
+                return res.json(viejo)
+            }
+            return res.status(404).json(`El value ${age} no esta seteado, revisalo e intenta nuevamente
+            o dirijete a api/src/routes/filters.js linea 183 para mas detalles
+            o contacta con el grupo de backend`)
+
         }
 
         res.status(404).json(`Esta es una ruta especifica de filtros \n por favor envie un key valido para obtner los filtrados \n si los desconoce, pongase en contacto con el equipo de Backend`)
