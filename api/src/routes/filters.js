@@ -74,6 +74,7 @@ router.get('/', async (req, res) => {
         let { year } = req.query
         //devuelve ordenados por el raiting especifico de cada producto
         let { rating } = req.query
+        
         //════════════════════════════════════════════════════════════════════════════
         //FILTROS ESPECIFICOS
         //devuelve ordenado por az
