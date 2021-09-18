@@ -1,53 +1,82 @@
-var express = require('express');
-const {Categorie, Product, SubCategory, Grape, conn} = require('../db');
-var router = express.Router();
+const { Router } = require('express');
+const { Product, Category, SubCategory, Grape } = require('../db')
+const router = Router();
 
 //Add a product to the database
 router.post('/', async (req, res) => {  
-   let { name, description, reldate, rating, picture, category, subcategory, grape} = req.body;
- 
-   const addProduct = await Videogame.create({
-      name,
-      description,
-      reldate,
-      rating, 
-      platform
-   })
+   let { name, description, price, year, rating, picture, category, subcategory, grape} = req.body;
+   let errmsg = {};
+   
+   if (!name) {
+      errmsg.name='Name is required'
+   } else {
+      if (!description) {
+         errmsg.desc='Description is required'
+      } else {
+         if (isNaN(year)) {
+            errmsg.year='Year is not a number'
+         } 
+      }
+   }
 
-  //Add Relation Product-Category       
-  const prod_cat = await Genre.findAll({
-      where:{name : category}
-  })
-  //Generate association link
-  addProduct.setCategory(prod_cat)
-
-  //Add Relation Product-SubCategory       
-  const prod_subcat = await SubCategory.findAll({
-   where:{type : subcategory}
-  })
-  //Generate association link
-  addProduct.setSubCategory(prod_subcat)
-
-  //Add Relation Product-Grape       
-  const prod_grape = await Grape.findAll({
-    where:{name : grape}
-  })
-  //Generate association link
-  addProduct.setgrape(prod_grepe)
-
-  res.send('Product has been added')
+   try{
+      //Find Category
+      var categoryWine = await Category.findOne({
+         where: {name: category} 
+      }) 
+      if (categoryWine === null) {
+         errmsg.cat='Invalid Category'
+      }
+      if (category === 'wines') {
+         // Find SubCategory
+         var subCategoryWine = await SubCategory.findOne({
+            where: {type: subcategory}
+         })
+         if (subCategoryWine === null) {
+            errmsg.subcat='Invalid SubCategory' 
+         }
+         // Find Grape
+         var grapes = await Grape.findOne({
+             where: {name: grape}
+         })
+         if (grapes === null) {
+            errmsg.grape='Invalid Grape' 
+         }
+      }
+      if (Object.keys(errmsg).length) {
+         return res.status(400).send(errmsg) 
+      }
+      const newproduct = await Product.create({
+       name,
+       description,
+       price,
+       year,
+       rating, 
+       picture
+     })      
+    
+    await categoryWine.addProduct(newproduct)
+    if (category === 'wines') {
+       await subCategoryWine.addProduct(newproduct)
+       await grapes.addProduct(newproduct)
+    }   
+   } catch (error) {
+      res.send(`Error in route /product ${error}`);
+   }
+   res.status(201).send(`A new ${category.substr(0, category.length-1)} has been added`)
  });
 
- //Delete a product
-router.post('/delete/:name', async (req, res) => {
-   const { name } = req.params;
-   console.log('Delete de: ', name)
+//Delete a product
+router.delete('/:id', async (req, res) => {
+   const { id } = req.params;
    try {
     const elem = await Product.destroy({
-       where: {name: `${name}`}
+       where: {id: id}
     });
    } catch (error) {
-       res.send(`Error in route /videogames/delete ${error}`);
+       res.send(`Error in route.delete /product/:id ${error}`);
    }
-   res.send('Videogame has been deleted');
+   res.send('Product has been deleted');
  });  
+
+ module.exports = router;
