@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     year: {
@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
     },
     picture: {
       type: DataTypes.STRING,
