@@ -1,21 +1,24 @@
 import React from "react";
+import Link from "next/link";
 
-const Card = ({ price, name, img, discount }) => {
-  const priceDis = price - price * (discount / 100);
+const Card = ({ price, name, img, discount, id }) => {
+  const priceDis = price - price * (discount || 19 / 100);
   return (
     <>
       <div className="relative border bg-white border-purple-900 rounded-xl">
         <span className="absolute top-0 left-0 text-sm btn-primary p-2 rounded-br-xl rounded-tl-xl">
           {discount || 19}% OFF
         </span>
-        <img
-          className="max-h-52 w-full bg-white object-contain rounded-t-xl"
-          src={
-            img ||
-            "https://www.nicepng.com/png/detail/695-6953710_botella-de-vino-png.png"
-          }
-          alt=""
-        />
+        <Link href={`/product/${id}`}>
+          <img
+            className="max-h-52 w-full bg-white object-contain rounded-t-xl"
+            src={
+              img ||
+              "https://www.nicepng.com/png/detail/695-6953710_botella-de-vino-png.png"
+            }
+            alt=""
+          />
+        </Link>
         <div className="p-5">
           <h2 className="text-lg">{name || "Soy un vino"}</h2>
           <h4 className="text-gray-500 text-sm">
