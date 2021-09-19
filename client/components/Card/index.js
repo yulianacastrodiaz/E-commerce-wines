@@ -1,7 +1,7 @@
 import React from "react";
 
 const Card = ({ price, name, img, discount }) => {
-  const priceDis = price - price * (discount / 100);
+  const priceDis = price - price * (discount || 19 / 100);
   return (
     <>
       <div className="relative border bg-white border-purple-900 rounded-xl">
@@ -19,7 +19,7 @@ const Card = ({ price, name, img, discount }) => {
         <div className="p-5">
           <h2 className="text-lg">{name || "Soy un vino"}</h2>
           <h4 className="text-gray-500 text-sm">
-            ${priceDis.toFixed(2)}{" "}
+            ${priceDis.toFixed(2) }{" "}
             <span className="line-through text-sm text-red-500">${price}</span>
           </h4>
         </div>
