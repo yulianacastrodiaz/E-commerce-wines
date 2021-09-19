@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import Card from "../Card";
 import { useSelector } from "react-redux";
 
 const Cards = () => {
-  const products = useSelector(state => state.products)
+  const products = useSelector((state) => state.products);
 
   const renderData = (data) => {
     return (
       <div className="p-10 grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5 w-screen h-scren align-middle">
         {data.map((e) => (
-          <Card key={e.id} name={e.name} price={e.price} />
+          <Card key={e.id} id={e.id} name={e.name} price={e.price} />
         ))}
       </div>
     );
