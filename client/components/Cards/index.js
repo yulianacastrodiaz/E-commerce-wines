@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Card";
-import useProduct from "../../hooks/useProduct";
+import { useSelector } from "react-redux";
 
 const Cards = () => {
-  const { products } = useProduct();
+  const products = useSelector(state => state.products)
 
   const renderData = (data) => {
     return (

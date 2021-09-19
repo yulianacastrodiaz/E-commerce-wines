@@ -17,7 +17,7 @@ const Filters = () => {
     <div className="flex justify-center">
       <Filter category="Category" options={categories} func={change} />
 
-      {sub === "wines" ? (
+      {sub === "ee49df42-45f3-438a-a936-5af5444b5180" ? (
         <Filter category="Sub Categories" options={subCategories} />
       ) : null}
     </div>
