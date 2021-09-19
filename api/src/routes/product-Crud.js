@@ -78,4 +78,70 @@ router.delete('/:id', async (req, res) => {
    res.send('Product has been deleted');
  });  
 
- module.exports = router;
+//Update a product
+router.put('/:id', async (req,res) => {
+   const { id } = req.params;
+   let { name, description, price, year, picture, category, subcategory, grape} = req.body;
+ //  action.payload === 'All' ? hago en tru : hago en false
+   try {
+      let Prod = await Product.findOne({
+         where: {id: parseInt(id)}
+      })
+      if (Prod.name) { 
+         let changes = [];
+         if (name)  { 
+            Prod.name = name;
+            changes.push('name')
+         };
+         if (description) {
+            Prod.description = description;
+            changes.push('description')
+         }
+         if (price) {
+            Prod.price = price;
+            changes.push('price')
+         }   
+         if (year) {
+            Prod.year = year;
+            changes.push('year')
+         }   
+         await Prod.save(changes);
+      }   
+      //Update Category
+      if (category) {
+         let catProd = await Category.findOne({
+            where: {name: category} 
+         }) 
+         if (catProd === null) {
+            res.send('Error in route.Put /product/:id Category not found.');
+         }
+         await catProd.addProduct(Prod)
+      }
+      //Update SubCategory
+      if (subcategory) {
+         let subCatProd = await SubCategory.findOne({
+            where: {type: subcategory} 
+         }) 
+         if (subCatProd === null) {
+            res.send('Error in route.Put /product/:id SubCategory not found.');
+         }
+         await subCatProd.addProduct(Prod)
+      }
+      //Update Grape
+      if (grape) {
+         let grapeProd = await Grape.findOne({
+            where: {name: grape} 
+         }) 
+         if (grapeProd === null) {
+            res.send('Error in route.Put /product/:id Grape not found.');
+         }
+         await grapeProd.addProduct(Prod)
+      }
+      
+      res.send('Product has been updated.');
+    } catch (error) {
+      res.send(`Error in route.put /product/:id ${error}`);
+    }
+});
+
+module.exports = router;
