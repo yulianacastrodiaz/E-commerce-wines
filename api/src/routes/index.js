@@ -8,7 +8,7 @@ const subCategoriesRouter = require('./subCategories')
 const categoriesRouter = require('./categories');
 const productRouter = require('./product-Crud');
 const grapeRouter = require('./grapes')
-const filtersRouter = require('./filters')
+
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -17,6 +17,6 @@ router.use('/categories', categoriesRouter);
 router.use('/subcategories', subCategoriesRouter);
 router.use('/product', productRouter);
 router.use('/grapes', grapeRouter);
-router.use('/filter', filtersRouter);
+
 
 module.exports = router;
