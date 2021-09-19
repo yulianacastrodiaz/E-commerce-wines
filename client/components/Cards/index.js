@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../Card";
 import useProduct from "../../hooks/useProduct";
 
@@ -15,12 +15,16 @@ const Cards = () => {
     );
   };
 
-  const [data, setData] = useState(products);
+  const [data, setData] = useState([]);
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(5);
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+
+  useEffect(() => {
+    setData(products);
+  }, [products]);
 
   const handleClick = (event) => {
     setcurrentPage(Number(event.target.id));
@@ -85,7 +89,7 @@ const Cards = () => {
   return (
     <div className="align-middle justify-center">
       {renderData(currentItems)}
-      <div className="btn-group">
+      <div className="btn-group flex justify-center align-middle">
         <button
           className="btn"
           onClick={handlePrevbtn}
