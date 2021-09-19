@@ -116,8 +116,8 @@ router.get('/', async (req, res) => {
          return res.json(costo)}
       
       if(year){
-         const anio = await filtrar.year(year)
-         return res.json(anio)}
+         const edad = await filtrar.year(year)
+         return res.json(edad)}
 
       if(rating){
          const start = await filtrar.rating(rating)
@@ -160,7 +160,7 @@ router.get('/', async (req, res) => {
    }
    catch (error) { 
       console.log(error)
-      res.status(404).json("hay una falla en la ruta get") }
+      res.status(404).json("hay una falla en la ruta get, informale a la gente del back") }
 });
 
 module.exports = router;
