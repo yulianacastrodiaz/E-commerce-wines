@@ -14,12 +14,11 @@ const Navbar = () => {
         <input type="checkbox" id="my-modal-2" className="modal-toggle" />
         <div className="modal">
           <div className="modal-box">
-            <h1>Login</h1>
-            <div className="modal-action">
-              <label htmlFor="my-modal-2" className="btn btn-primary">
+            <div className="modal-action flex-col">
+              <label htmlFor="my-modal-2" className="btn my-2">
                 Registrate con google
               </label>
-              <label htmlFor="my-modal-2" className="btn">
+              <label htmlFor="my-modal-2" className="btn btn-secondary my-2">
                 Close
               </label>
             </div>
