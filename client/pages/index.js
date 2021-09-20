@@ -5,7 +5,7 @@ import { getProducts } from "../actions";
 import Cards from "../components/Cards";
 import Filters from "../components/Filters";
 import Navbar from "../components/Navbar";
-import Search from "../components/Search";
+import Carousel from "../components/Carousel";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -16,8 +16,8 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <Search />
       <Filters />
+      <Carousel />
       <Cards />
     </main>
   );

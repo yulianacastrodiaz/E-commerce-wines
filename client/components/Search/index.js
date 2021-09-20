@@ -13,28 +13,30 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getByName(search))
-    setSearch('')
-  }
+    dispatch(getByName(search));
+    setSearch("");
+  };
 
   return (
-    <div className="align-middle flex justify-center">
-      <div className="form-control m-5 flex align-middle">
-        <div className="relative w-96">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-full pr-16 input input-primary input-bordered"
-              onChange={handleChange}
-            />
-            <button
-              type="submit"
-              className="absolute top-0 right-0 rounded-l-none btn btn-primary"
-            >
-              Search
-            </button>
-          </form>
+    <div >
+      <div className="align-middle flex justify-center">
+        <div className="form-control flex align-middle">
+          <div className="relative w-96">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Search"
+                className="w-full pr-16 input input-primary input-bordered"
+                onChange={handleChange}
+              />
+              <button
+                type="submit"
+                className="absolute top-0 right-0 rounded-l-none btn btn-primary"
+              >
+                Search
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
