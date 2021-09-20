@@ -8,13 +8,13 @@ const Cards = () => {
 
   const renderData = (data) => {
     return (
-      <div className="p-10 grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5 w-screen h-scren align-middle">
+      <div className="p-5 grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5 w-screen align-middle">
         {data.map((e) => (
-          <Card key={e.id} id={e.id} name={e.name} price={e.price} />
+          <Card key={e.id} id={e.id} name={e.name} price={e.price} img={e.picture.includes('...') ? '' : e.picture} />
         ))}
       </div>
     );
-  };
+  };['i8']
 
   const [data, setData] = useState([]);
   const [currentPage, setcurrentPage] = useState(1);
@@ -88,7 +88,7 @@ const Cards = () => {
   };
 
   return (
-    <div className="align-middle justify-center">
+    <div className="align-middle">
       {renderData(currentItems)}
       <div className="btn-group flex justify-center align-middle">
         <button
