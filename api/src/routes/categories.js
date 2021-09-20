@@ -1,23 +1,23 @@
 const { Router } = require('express');
-const { Categorie } = require('../db')
-
+const { Category } = require('../db')
+const { SubCategory } = require('../db')
 const router = Router();
 
-router.get('/',(req, res) => {
-  res.json("soy la ruta get")
-});
-
-router.post('/', async(req, res) => {
-  const {name} = req.body;
+router.get('/', async(req, res) => {
+  const { name } = req.query
   try {
-    if(name){
-      const newCategorie = await Categorie.create({
-        name
-      })
-      res.json(newCategorie)
+    if (name) {
+      const categorie = await Category.findOne({ where: { name } })
+      if (categorie) {
+        res.json(categorie)
+      } else {
+        res.status(404).json({msg: `No se encontró la categoria ${name}`})
+      }
+    } else {
+      const allCategories = await Category.findAll();
+      res.json(allCategories)
     }
   } catch (error) {
-    console.log(error);
     res.status(404).json(error)
   }
 });

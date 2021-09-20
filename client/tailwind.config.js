@@ -8,5 +8,13 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
+
+  daisyui: {
+    themes: [
+      'fantasy', // first one will be the default theme
+    ],
+  },
 }
