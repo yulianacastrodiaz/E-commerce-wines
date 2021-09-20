@@ -9,6 +9,7 @@ const categoriesRouter = require('./categories');
 const productRouter = require('./product-Crud');
 const grapeRouter = require('./grapes')
 
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 

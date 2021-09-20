@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     year: {
@@ -24,15 +24,19 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
+	    
       type: DataTypes.DECIMAL,
       defaultValue:0,
     },
     stock : {
       type: DataTypes.INTEGER,
       defaultValue: 0,
+
+     
     },
     picture: {
       type: DataTypes.STRING,
     }
   });
 };
+

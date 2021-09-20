@@ -6,21 +6,21 @@ function preloadProducts(){
     descripcion: "vino de Salta de uvas torrontes",
     price: 450,
     year:2020,
-    rating:null,
+    rating:4,
     picture:"url..."
   },{
     name: "Chivas 12",
     descripcion: "whisky añejado por 12 años",
     price:3.000,
     year:0,
-    rating:null,
+    rating:5,
     picture:"url..."
   },{
     name: "Saint Felicien",
     descripcion: " vino de Medoza de uvas malbec",
     price:600,
     year:2019,
-    rating:null,
+    rating:2,
     picture:"url..."
   }]
 
@@ -41,5 +41,6 @@ function preloadProducts(){
     return console.log(error)
   }
 }
+
 
 module.exports = preloadProducts;
