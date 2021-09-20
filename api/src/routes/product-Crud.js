@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { Product, Category, SubCategory, Grape } = require('../db')
 const router = Router();
+var cloudinary = require('cloudinary').v2
 
 //Add a product to the database
 router.post('/', async (req, res) => {  
@@ -142,6 +143,26 @@ router.put('/:id', async (req,res) => {
     } catch (error) {
       res.send(`Error in route.put /product/:id ${error}`);
     }
+});
+
+//cloudinary route
+router.get('/cloudinary', async (req,res) => {
+   cloudinary.config({ 
+      cloud_name: 'wineec', 
+      api_key: '274411769289487', 
+      api_secret: '4gnVRFogqLYomf1Tdb0sNjZM-Qg' 
+   });
+   console.log(cloudinary.url('sample'));
+   console.log('Voy al upload')
+   cloudinary.uploader.upload(
+      "./img/Puna.jpg",
+       {
+         use_filename : true,
+         unique_filename : false,
+       },
+       function(error,result) {console.log(error,result);}
+   ); 
+   res.send('cloudinary Done');
 });
 
 module.exports = router;
