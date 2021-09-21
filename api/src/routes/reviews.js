@@ -19,4 +19,20 @@ try {
   res.status(404).json(error)
 }
 
+try {
+  router.post('/', async(req, res) => {
+    const { comment, start, product } = req.body;
+    const p = await Product.findOne({where: { id: product } })
+    const newReview = await Review.create({
+      comment,
+      start
+    })
+    await p.addReview(newReview)
+    res.json({ msg: "Tu review ha sido publicada"})
+  })
+} catch (error) {
+  console.log(error)
+  res.status(404).json(error)
+}
+
 module.exports = router;
