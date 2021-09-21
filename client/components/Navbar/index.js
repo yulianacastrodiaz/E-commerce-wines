@@ -1,5 +1,5 @@
 import Search from "../Search";
-import { useState } from "react";
+import React, { useState, useEffect, useSelector } from "react";
 import Cart from "../Cart";
 
 const Navbar = () => {
@@ -7,6 +7,7 @@ const Navbar = () => {
     username: "",
     password: "",
   });
+
   const handleChange = (e) => {
     setUser({
       ...user,
