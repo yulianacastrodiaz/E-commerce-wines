@@ -6,7 +6,7 @@ const Card = ({ price, name, img, discount, id }) => {
   return (
     <>
       <div className="relative border bg-white border-purple-900 rounded-xl">
-        <span className="absolute top-0 left-0 text-sm btn-primary p-2 rounded-br-xl rounded-tl-xl">
+        <span className="absolute top-0 left-0 text-sm btn-ghost text-white bg-red-800 p-2 rounded-br-xl rounded-tl-xl">
           {discount || 19}% OFF
         </span>
         <Link href={`/product/${id}`}>

@@ -14,7 +14,7 @@ const Filters = () => {
           <div className="flex items-stretch">
             {categories &&
               categories.map((e) => (
-                <a className="btn btn-ghost btn-sm rounded-btn">{e.name}</a>
+                <a key={e.name} className="btn btn-ghost btn-sm rounded-btn">{e.name}</a>
               ))}
           </div>
         </div>
