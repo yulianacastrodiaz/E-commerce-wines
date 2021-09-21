@@ -4,11 +4,13 @@ const { Product, Category, SubCategory, Grape } = require('../db')
 const filtrar = require('./filters.js')
 
 const router = Router();
+var cloudinary = require('cloudinary').v2
+
 // Router.use(express.json());
 
 
 // router.use(express.json());
-const firstUpperCase = function (mayus) { return mayus.replace(/\b\w/g, l => l.toUpperCase()) }
+const firstUpperCase = function (mayus) { return mayus.replace(/\b\w/g, l => l.toUpperCase()) 
 
 //Add a product to the database
 router.post('/', async (req, res) => {
@@ -229,5 +231,27 @@ router.put('/:id', async (req,res) => {
     }
 });
 
+<<<<<<< HEAD
+//cloudinary route
+router.get('/cloudinary', async (req,res) => {
+   cloudinary.config({ 
+      cloud_name: 'wineec', 
+      api_key: '274411769289487', 
+      api_secret: '4gnVRFogqLYomf1Tdb0sNjZM-Qg' 
+   });
+   console.log(cloudinary.url('sample'));
+   console.log('Voy al upload')
+   cloudinary.uploader.upload(
+      "./img/Puna.jpg",
+       {
+         use_filename : true,
+         unique_filename : false,
+       },
+       function(error,result) {console.log(error,result);}
+   ); 
+   res.send('cloudinary Done');
+});
+=======
+>>>>>>> 8b6ffd37bfa6809dd7389ae2197b5e2f40203b1e
 
 module.exports = router;

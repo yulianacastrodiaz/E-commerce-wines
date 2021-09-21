@@ -11,6 +11,10 @@ module.exports = (sequelize) => {
     description: {
       type: DataTypes.TEXT,
     },
+    brand: {
+      type:DataTypes.STRING,
+      allowNull: false,
+    },
     price: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -20,7 +24,15 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
+	    
       type: DataTypes.INTEGER,
+      defaultValue:0,
+    },
+    stock : {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+
+     
     },
     picture: {
       type: DataTypes.STRING,
