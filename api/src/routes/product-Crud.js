@@ -4,7 +4,7 @@ const router = Router();
 
 //Add a product to the database
 router.post('/', async (req, res) => {  
-   let { name, description, price, year, rating, picture, category, subcategory, grape} = req.body;
+   let { name, description, brand, price, year, rating, stock, picture, category, subcategory, grape} = req.body;
    let errmsg = {};
    
    if (!name) {
@@ -15,10 +15,17 @@ router.post('/', async (req, res) => {
       } else {
          if (isNaN(year)) {
             errmsg.year='Year is not a number'
-         } 
+         } else {
+            if (!brand) {
+               errmsg.brand='Brand is required' 
+            } else {
+               if (isNaN(stock) || stock < 0) {
+                  errmsg.brand=`Error in stock value: ${stock}`
+               }
+            }
+         }
       }
    }
-
    try{
       //Find Category
       var categoryProd = await Category.findOne({
@@ -48,9 +55,11 @@ router.post('/', async (req, res) => {
       const newproduct = await Product.create({
        name,
        description,
+       brand,
        price,
        year,
-       rating, 
+       rating,
+       stock, 
        picture
      })      
     
@@ -81,8 +90,7 @@ router.delete('/:id', async (req, res) => {
 //Update a product
 router.put('/:id', async (req,res) => {
    const { id } = req.params;
-   let { name, description, price, year, picture, category, subcategory, grape} = req.body;
- //  action.payload === 'All' ? hago en tru : hago en false
+   let { name, description, brand, price, year, stock, picture, category, subcategory, grape} = req.body;
    try {
       let Prod = await Product.findOne({
          where: {id: parseInt(id)}
@@ -97,6 +105,10 @@ router.put('/:id', async (req,res) => {
             Prod.description = description;
             changes.push('description')
          }
+         if (brand) {
+            Prod.brand = brand;
+            changes.push('brand')
+         }
          if (price) {
             Prod.price = price;
             changes.push('price')
@@ -104,6 +116,10 @@ router.put('/:id', async (req,res) => {
          if (year) {
             Prod.year = year;
             changes.push('year')
+         }
+         if (stock) {
+            Prod.stock = stock;
+            changes.push('stock')
          }   
          await Prod.save(changes);
       }   
