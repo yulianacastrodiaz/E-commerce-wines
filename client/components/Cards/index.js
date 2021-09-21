@@ -19,7 +19,7 @@ const Cards = () => {
 
   const [data, setData] = useState([]);
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(1);
+  const [itemsPerPage, setitemsPerPage] = useState(10);
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
