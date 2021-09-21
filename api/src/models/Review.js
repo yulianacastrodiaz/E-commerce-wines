@@ -13,6 +13,13 @@ module.exports = (sequelize) => {
     comment: {
       type: DataTypes.TEXT,
       allowNull: false,
+    },
+    start: {
+      type: DataTypes.INTEGER,
+      validate: {
+        max: 5,                
+        min: 1,
+      }
     }
   });
 };
