@@ -1,11 +1,13 @@
 import Search from "../Search";
-import { useState } from "react";
+import { useState, useEffect, useSelector } from "react";
 
 const Navbar = () => {
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+
+
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -69,7 +71,7 @@ const Navbar = () => {
                 
                <label 
                htmlFor="my-modal-2" 
-               className="btn mt-2"
+               className="btn btn-accent mt-2"
                disabled={user.username === "" || user.password === ""}
                >
                 Login
@@ -87,7 +89,7 @@ const Navbar = () => {
 
               <label 
               htmlFor="my-modal-2" 
-              className="btn btn-secondary mt-2"
+              className="btn btn-primary mt-2"
               >
                 Close
               </label>

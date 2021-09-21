@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const Cards = () => {
   const products = useSelector((state) => state.products);
+  
 
   const renderData = (data) => {
     return (
@@ -18,13 +19,14 @@ const Cards = () => {
 
   const [data, setData] = useState([]);
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(5);
+  const [itemsPerPage, setitemsPerPage] = useState(10);
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
   useEffect(() => {
     setData(products);
+    setcurrentPage(1);
   }, [products]);
 
   const handleClick = (event) => {

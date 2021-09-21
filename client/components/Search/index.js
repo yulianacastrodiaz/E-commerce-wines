@@ -13,7 +13,7 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getByName(search));
+    dispatch(getByName(search))
     setSearch("");
   };
 
