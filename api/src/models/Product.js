@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo correspondiente a la tabla videogame
+// Exportamos una funcion que define el modelo correspondiente a la tabla Product
+
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
@@ -11,6 +12,10 @@ module.exports = (sequelize) => {
     description: {
       type: DataTypes.TEXT,
     },
+    brand: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     price: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -21,6 +26,11 @@ module.exports = (sequelize) => {
     },
     rating: {
       type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
     },
     picture: {
       type: DataTypes.STRING,
