@@ -35,7 +35,9 @@ try {
       server.listen(3001, () => {
         console.log('%s listening at 3001'); // eslint-disable-line no-console
       });
-    })
+    }).catch(e => {
+      console.log(e)
+    })  
 } catch (error) {
   console.log(error)
 }
