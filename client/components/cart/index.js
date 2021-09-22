@@ -11,6 +11,7 @@ const Cart = () => {
     total = total + e.q * e.priceDis;
   });
 
+  
   return (
     <>
       <div className="rounded-b border-t-0 z-10">
