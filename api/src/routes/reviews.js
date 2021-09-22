@@ -20,6 +20,26 @@ try {
 }
 
 try {
+  router.put('/', async(req, res) => {
+    const { newcomment, newstart, id } = req.body
+    const review = await Review.findByPk(id)
+
+    if(newcomment){
+      review.comment = newcomment
+    }
+
+    if(newstart){
+      review.start = newstart
+    }
+    review.save()
+    res.json({msg: "Su review ha sido actualizada con éxito"})
+  })
+} catch (error) {
+  console.log(error)
+  res.status(404).json(error)
+}
+
+try {
   router.post('/', async(req, res) => {
     const { comment, start, product } = req.body;
     const p = await Product.findOne({where: { id: product } })
