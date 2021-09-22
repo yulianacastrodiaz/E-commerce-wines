@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeCart } from "../../actions";
+import { addCart, removeCart } from "../../actions";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -11,7 +11,6 @@ const Cart = () => {
     total = total + e.q * e.priceDis;
   });
 
-  
   return (
     <>
       <div className="rounded-b border-t-0 z-10">
@@ -31,7 +30,15 @@ const Cart = () => {
                 <div className="flex-auto text-sm w-32">
                   <div className="font-bold">{e.name}</div>
                   <div className="truncate">Product 1 description</div>
-                  <div className="text-gray-400">Qty: {e.q}</div>
+                  <div className="text-gray-400">
+                    Qty: {e.q}
+                    <button className="ml-3 w-4 h-4 align-middle hover:bg-red-200 rounded-full cursor-pointer text-red-700" onClick={() => dispatch(removeCart(e.id, true))}>
+                      -
+                    </button>
+                    <button className="ml-3 w-4 h-4 align-middle hover:bg-red-200 rounded-full cursor-pointer text-red-700" onClick={() => dispatch(addCart({id: e.id}))}>
+                      +
+                    </button>
+                  </div>
                 </div>
                 <div className="flex flex-col w-18 font-medium items-end">
                   <button onClick={() => dispatch(removeCart(e.id))}>
@@ -60,10 +67,14 @@ const Cart = () => {
               </div>
             ))
           ) : (
-            <h1>Comienza agregando algoo</h1>
+            <h1 className="align-middle flex justify-center font-semibold">
+              Comienza agregando algo
+            </h1>
           )}
-          <div className="flex align-middle bg-base-200 justify-center pt-4">
-            <button className="btn btn-secondary">Checkout: ${total.toFixed(2)}</button>
+          <div className="flex align-middle bg-base-200 justify-center p-4">
+            <button className="btn btn-secondary">
+              Checkout: ${total.toFixed(2)}
+            </button>
           </div>
         </div>
       </div>
