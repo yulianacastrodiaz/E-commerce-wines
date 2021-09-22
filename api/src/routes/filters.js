@@ -34,6 +34,13 @@ module.exports = {
             : (`No tenemos existencia de un producto con ${id} como id`)
     },
 
+    brand: async function (brand){
+        let data = await this.allProducts()
+        const marca = data.filter(p => p.brand.includes(brand))
+        return (marca.length > 0) ? (marca)
+        : (`En nuestro catalogo no existen productos que coincidan con la marca ${brand}`)
+    },
+
     price: async function (price) {
         let data = await this.allProducts()
         price = parseInt(price)
@@ -59,28 +66,64 @@ module.exports = {
         return (byRating.length > 0) ? (byRating)
             : (`No encontramos coincidencia exacta de un producto con el rating ${rating}`)
     },
-    az: async function (az) {
-        az = az.toLowerCase();
+
+    stock: async function (stock){
         let data = await this.allProducts()
-        if (az === "az") {
-            let azName = data.sort(function (n1, n2) {
+        stock = parseInt(stock)
+        if(typeof stock !== "number") { return `El stock ${stock} ingresado no es del tipo numerico`}
+        let byStock = data.filter(p=>p.stock === stock)
+        return (byStock.length > 0) ? (byStock)
+        : (`No encontramos coincidencia exacta de un producto con el stock ${stock}`)
+
+    },
+
+    azName: async function (azName) {
+        azName = azName.toLowerCase();
+        let data = await this.allProducts()
+        if (azName === "az") {
+            let azNombre = data.sort(function (n1, n2) {
                 return (n1.name > n2.name) ? 1
                     : (n2.name > n1.name) ? -1
                         : 0
             })
-            return (azName)
+            return (azNombre)
         }
-        if (az === "za") {
-            let zaName = data.sort(function (n1, n2) {
+        if (azName === "za") {
+            let zaNombre = data.sort(function (n1, n2) {
                 return (n1.name > n2.name) ? -1
                     : (n2.name > n1.name) ? 1
                         : 0
             })
-            return (zaName)
+            return (zaNombre)
         }
 
         return (`El value ${az} no esta seteado, revisalo e intenta nuevamente
-            o dirijete a api/src/routes/filters.js linea 133 para mas detalles
+            o dirijete a api/src/routes/filters.js linea 80 para mas detalles
+            o contacta con el grupo de backend`)
+    },
+
+    azBrand: async function (az) {
+        az = az.toLowerCase();
+        let data = await this.allProducts()
+        if (az === "az") {
+            let azBrand = data.sort(function (n1, n2) {
+                return (n1.brand > n2.brand) ? 1
+                    : (n2.brand > n1.brand) ? -1
+                        : 0
+            })
+            return (azBrand)
+        }
+        if (az === "za") {
+            let zaBrand = data.sort(function (n1, n2) {
+                return (n1.brand > n2.brand) ? -1
+                    : (n2.brand > n1.brand) ? 1
+                        : 0
+            })
+            return (zaBrand)
+        }
+
+        return (`El value ${az} no esta seteado, revisalo e intenta nuevamente
+            o dirijete a api/src/routes/filters.js linea 105 para mas detalles
             o contacta con el grupo de backend`)
     },
 
@@ -101,7 +144,7 @@ module.exports = {
         }
 
         return (`El value ${money} no esta seteado, revisalo e intenta nuevamente
-            o dirijete a api/src/routes/filters.js linea 162 para mas detalles
+            o dirijete a api/src/routes/filters.js linea 130 para mas detalles
             o contacta con el grupo de backend`)
     },
 
@@ -121,7 +164,27 @@ module.exports = {
             return (viejo)
         }
         return (`El value ${age} no esta seteado, revisalo e intenta nuevamente
-            o dirijete a api/src/routes/filters.js linea 183 para mas detalles
+            o dirijete a api/src/routes/filters.js linea 151 para mas detalles
+            o contacta con el grupo de backend`)
+    },
+
+    stockSort: async function (stock) {
+        stock = stock.toLowerCase();
+        let data = await this.allProducts()
+        if (stock === "more") {
+            let mas = data.sort(function (e1, e2) {
+                return e2.stock - e1.stock
+            })
+            return (mas)
+        }
+        if (stock === "less") {
+            let menos = data.sort(function (e1, e2) {
+                return e1.stock - e2.stock
+            })
+            return (menos)
+        }
+        return (`El value ${stock} no esta seteado, revisalo e intenta nuevamente
+            o dirijete a api/src/routes/filters.js linea 171 para mas detalles
             o contacta con el grupo de backend`)
     },
 
