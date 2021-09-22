@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart, removeCart } from "../../actions";
+import Link from "next/link";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -32,10 +33,16 @@ const Cart = () => {
                   <div className="truncate">Product 1 description</div>
                   <div className="text-gray-400">
                     Qty: {e.q}
-                    <button className="ml-3 w-4 h-4 align-middle hover:bg-red-200 rounded-full cursor-pointer text-red-700" onClick={() => dispatch(removeCart(e.id, true))}>
+                    <button
+                      className="ml-3 w-4 h-4 align-middle hover:bg-red-200 rounded-full cursor-pointer text-red-700"
+                      onClick={() => dispatch(removeCart(e.id, true))}
+                    >
                       -
                     </button>
-                    <button className="ml-3 w-4 h-4 align-middle hover:bg-red-200 rounded-full cursor-pointer text-red-700" onClick={() => dispatch(addCart({id: e.id}))}>
+                    <button
+                      className="ml-3 w-4 h-4 align-middle hover:bg-red-200 rounded-full cursor-pointer text-red-700"
+                      onClick={() => dispatch(addCart({ id: e.id }))}
+                    >
                       +
                     </button>
                   </div>
@@ -72,9 +79,11 @@ const Cart = () => {
             </h1>
           )}
           <div className="flex align-middle bg-base-200 justify-center p-4">
-            <button className="btn btn-secondary">
-              Checkout: ${total.toFixed(2)}
-            </button>
+            <Link href="/checkout">
+              <button className="btn btn-secondary">
+                Checkout: ${total.toFixed(2)}
+              </button>
+            </Link>
           </div>
         </div>
       </div>
