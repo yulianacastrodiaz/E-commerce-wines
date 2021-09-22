@@ -1,6 +1,7 @@
 const { Product } = require('../db')
 
 function preloadProducts(){
+  
   const products = [{
     name: "Cafayate",
     descripcion: "vino de Salta de uvas torrontes",

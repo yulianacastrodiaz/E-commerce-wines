@@ -3,9 +3,6 @@
 
 const { Product } = require('../db')
 
-
-// const router = Router();
-
 module.exports = {
 
 

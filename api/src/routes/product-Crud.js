@@ -7,7 +7,6 @@ const { api_key, api_secret } = process.env
 
 const router = Router();
 var cloudinary = require('cloudinary').v2
-// Router.use(express.json());
 
 
 // router.use(express.json());
