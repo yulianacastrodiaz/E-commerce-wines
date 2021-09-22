@@ -1,8 +1,13 @@
 import Search from "../Search";
 import React, { useState, useEffect, useSelector } from "react";
 import Cart from "../Cart";
+import { useDispatch } from "react-redux";
+import { login } from "../../actions"
+
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -14,6 +19,12 @@ const Navbar = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleSubmit = (e) => {
+    dispatch(login(user));
+  }
+
+
 
   return (
     <>
@@ -78,6 +89,7 @@ const Navbar = () => {
                     htmlFor="my-modal-2"
                     className="btn mt-2"
                     disabled={user.username === "" || user.password === ""}
+                    onClick={handleSubmit}
                   >
                     Login
                   </label>
