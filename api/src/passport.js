@@ -1,25 +1,30 @@
 const passport = require('passport');
+const { User } = require('./db');
+const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../db.js')
+
 
 passport.use(new LocalStrategy(
-    function (email, password, done) {
+    function (username, password, done) {
+        console.log(username, password)
         User.findOne({
             where: {
-                'email': email
+                'username': username
             }
         }).then(function (user) {
             if (user == null) {
-                return done(null, false, { message: 'El usuario no existe' })
+                // console.log(user == null)
+                return done(null, false)
             }
 
             var hashedPassword = bcrypt.hashSync(password, user.salt)
 
             if (user.password === hashedPassword) {
+                // console.log(user.password === hashedPassword)
                 return done(null, user)
             }
 
-            return done(null, false, { message: 'Contraseña incorrecta' })
+            return done(null, false)
         })
     }
 ))
@@ -38,4 +43,4 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
-// module.exports = passport
+module.exports = passport
