@@ -1,6 +1,7 @@
 const initialState = {
   products: [],
   category: "",
+  cart: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -14,6 +15,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case "ADD_CART":
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    case "REMOVE_CART":
+      return {
+        ...state,
+        cart: action.payload,
       };
     default:
       return state;
