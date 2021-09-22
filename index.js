@@ -9,6 +9,7 @@ const presetProducts = require('./src/preset/presetProducts')
 const preloadReviews = require('./src/preload/preloadReviews')
 const presetReviews = require('./src/preset/presetReviews')
 
+
 // Syncing all the models at once.
 const force = true;
 try {
@@ -32,7 +33,7 @@ try {
         const setReviews = await presetReviews();
         console.log('preseteo de reviews: done :)');
       }
-      server.listen(3001, () => {
+      server.listen(3001 || process.env.PORT, () => {
         console.log('%s listening at 3001'); // eslint-disable-line no-console
       });
     }).catch(e => {
