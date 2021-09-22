@@ -1,26 +1,43 @@
 const { Product } = require('../db')
 
 function preloadProducts(){
+  
   const products = [{
     name: "Cafayate",
     descripcion: "vino de Salta de uvas torrontes",
+    brand:"Salta bodegas",
     price: 450,
     year:2020,
     rating:4,
+    stock:8,
     picture:"url..."
   },{
     name: "Chivas 12",
     descripcion: "whisky añejado por 12 años",
+    brand:"Chivas",
     price:3.000,
     year:0,
     rating:5,
+    stock:20,
     picture:"url..."
   },{
     name: "Saint Felicien",
     descripcion: " vino de Medoza de uvas malbec",
+    brand:"Bodegas Mendoza",
     price:600,
     year:2019,
     rating:2,
+    stock:10,
+    picture:"url..."
+  },
+  {
+    name: "Bohemian Pilsener",
+    descripcion: " Cerveza rubia suave",
+    brand:"Cerveza Patagonia",
+    price:300,
+    year:2021,
+    rating:4,
+    stock:80,
     picture:"url..."
   }]
 
@@ -29,9 +46,11 @@ function preloadProducts(){
       return await Product.create({
         name: p.name,
         descripcion: p.descripcion,
+        brand: p.brand,
         price: p.price,
         year: p.year,
         rating: p.rating,
+        stock:p.stock,
         picture: p.picture
       })
     })

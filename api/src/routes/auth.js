@@ -23,7 +23,7 @@ function(req, res) {
 router.get('/logout', (req, res) => {
   // req.logout();
   // req.session.destroy();
-  res.send('<button href="/auth">Salir</button>');
+  res.send('/auth');
 });
 
 
