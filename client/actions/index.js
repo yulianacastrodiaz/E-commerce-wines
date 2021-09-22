@@ -28,10 +28,10 @@ export const addCart = (product) => async (dispatch) => {
     array = localStorage.getItem("cart");
     array = JSON.parse(array);
 
-    let element = array.find((e) => e.name === product.name);
+    let element = array.find((e) => e.id === product.id);
     if (element) {
       array = array.map((e) => {
-        if (e.name === product.name) {
+        if (e.id === product.id) {
           e.q++;
           return e;
         } else {
@@ -56,11 +56,24 @@ export const addCart = (product) => async (dispatch) => {
   });
 };
 
-export const removeCart = (id) => async (dispatch) => {
+export const removeCart = (id, removeOne) => async (dispatch) => {
   let array = [];
   array = localStorage.getItem("cart");
   array = JSON.parse(array);
-  array = array.filter(e => e.id !== id);
+
+  if (removeOne) {
+    array = array.map((e) => {
+      if (e.id === id) {
+        e.q = e.q - 1;
+        return e;
+      }
+      return e;
+    });
+
+    array = array.filter((e) => e.q > 0);
+  } else {
+    array = array.filter((e) => e.id !== id);
+  }
   localStorage.setItem("cart", JSON.stringify(array));
 
   dispatch({
