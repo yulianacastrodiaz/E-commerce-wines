@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const { Product, Category, SubCategory, Grape } = require('../db')
 const filtrar = require('./filters.js')
-const { api_key, api_secret } = process.env
+const { api_key, api_secret, api_name } = process.env
 
 const router = Router();
 var cloudinary = require('cloudinary').v2
@@ -292,7 +292,7 @@ router.put('/:id', async (req, res) => {
 //cloudinary route
 router.get('/cloudinary', async (req, res) => {
    cloudinary.config({
-      cloud_name: 'wineec',
+      cloud_name: api_name,
       api_key: api_key,
       api_secret: api_secret
    });
