@@ -1,8 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
+import { addCart } from "../../actions";
 
 const Card = ({ price, name, img, discount, id }) => {
   const priceDis = price - price * (discount || 19 / 100);
+
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="relative border bg-white border-purple-900 rounded-xl">
@@ -27,7 +32,10 @@ const Card = ({ price, name, img, discount, id }) => {
           </h4>
         </div>
         <div className="flex">
-          <button className="py-3 w-9/12 btn-primary rounded-bl-xl font-extrabold">
+          <button
+            onClick={() => dispatch(addCart({ priceDis, name, img, id, q: 1 }))}
+            className="py-3 w-9/12 btn-primary rounded-bl-xl font-extrabold"
+          >
             Add to cart
           </button>
           <button className="py-3 w-3/12 bg-white rounded-br-xl text-yellow-400 font-extrabold flex justify-center">
