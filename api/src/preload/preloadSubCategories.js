@@ -7,6 +7,14 @@ function preloadSubCategories(){
     type: "pink"
   },{
     type: "white"
+  },{
+    type: "sparkling"
+  },{
+    type: "yellow"
+  },{
+    type: "amber"
+  },{
+    type: "dark"
   }]
 
   try {

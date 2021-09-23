@@ -5,7 +5,7 @@ function preloadGrapes(){
     name: "Cabernet Sauvignon"
   },{
     name: "Pinot Noir"
-  },,{
+  },{
     name: "Chardonnay"
   },{
     name: "Merlot"
@@ -15,6 +15,14 @@ function preloadGrapes(){
     name: "Malbec"
   },{
     name: "Torrontes"
+  },{
+    name: "Cabernet Franc"
+  },{
+    name: "Blend"
+  },{
+    name: "Bonarda"
+  },{
+    name: "Sauvignon Blanc"
   }]
 
   try {
