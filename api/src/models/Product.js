@@ -24,6 +24,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
+	    
       type: DataTypes.INTEGER,
       defaultValue:0,
     },
