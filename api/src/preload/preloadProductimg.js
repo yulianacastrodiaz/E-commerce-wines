@@ -1,10 +1,11 @@
 //cloudinary
 const cloudinary = require('cloudinary')
+const { api_key, api_secret, api_name } = process.env
 
 cloudinary.config({ 
-    cloud_name: 'wineec', 
-    api_key: '274411769289487', 
-    api_secret: '4gnVRFogqLYomf1Tdb0sNjZM-Qg' 
+    cloud_name: api_name, 
+    api_key: api_key, 
+    api_secret: api_secret 
   });
   const a = require('../img/')
   cloudinary.v2.uploader.upload("../img/JW18.jpg",
