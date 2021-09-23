@@ -77,7 +77,7 @@ const Navbar = () => {
                     <span className="label-text font-bold">Password</span>
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     className="input input-primary input-bordered"
                     value={user.password}

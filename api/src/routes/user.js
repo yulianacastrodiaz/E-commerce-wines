@@ -8,7 +8,7 @@ const router = Router();
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) throw err;
-    if (!user) res.send('El usuario no existe');
+    if (!user) res.status(404).json({error:'El usuario no existe'});
     else {
       req.logIn(user, (err) => {
         if (err) throw err;
