@@ -47,7 +47,7 @@ Category.hasMany(Product)
 Product.belongsTo(Category)
 Grape.hasMany(Product)
 Product.belongsTo(Grape)
-// User.hasMany(User) ?
+// User.hasMany(User) 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

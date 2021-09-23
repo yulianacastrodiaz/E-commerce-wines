@@ -18,12 +18,12 @@ module.exports = (sequelize) => {
       },
       username: {
         type: DataTypes.STRING,
-        allowNull: false,
+        required: true,
         unique: true,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        required: true,
       }
     }, {
       instanceMethods: {
@@ -37,7 +37,4 @@ module.exports = (sequelize) => {
     }
   )
 }
-
-
-
 
