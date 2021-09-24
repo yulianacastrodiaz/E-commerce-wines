@@ -3,6 +3,8 @@ import React, { useState, useEffect, useSelector } from "react";
 import Cart from "../Cart";
 import { useDispatch } from "react-redux";
 import { login } from "../../actions"
+import { loginWithGoogle } from "../../actions"
+import axios from "axios";
 
 
 const Navbar = () => {
@@ -100,8 +102,7 @@ const Navbar = () => {
                     <img
                       className="w-5 h-5 mr-2"
                       src="https://img.icons8.com/fluency/48/000000/google-logo.png"
-                    />
-                    Login with Google
+                    /><a href="http://localhost:3001/auth/google">Login with Google</a>
                   </label>
 
                   <label

@@ -3,21 +3,28 @@ const session = require('express-session');
 const passport = require('passport');
 const  User  = require('../db')
 require('../auth/google');
+const cors = require('cors');
+
+
 
 const router = Router();
+router.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+)
 
-router.get('/', (req, res) => {
-  res.send('<a href="/auth/google">Authenticate with Google</a>');
-});
+
 
 router.get('/google',
 passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
 
 router.get('/google/callback', 
-passport.authenticate('google', { failureRedirect: '/login' }),
+passport.authenticate('google', { failureRedirect: '/auth/google/failure', successRedirect: '/profile', }),
 function(req, res) {
-  res.redirect('/');
+  res.redirect('/auth');
 });
 
 router.get('/logout', (req, res) => {
@@ -25,6 +32,13 @@ router.get('/logout', (req, res) => {
   // req.session.destroy();
   res.send('/auth');
 });
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(404);
+}
+router.get('/profile', isLoggedIn, (req, res) => {
+  res.send(`Hello ${req.user}`);
+});
+
 
 
 module.exports = router;

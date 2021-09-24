@@ -2,6 +2,26 @@ import axios from 'axios';
 
 
 
+export const loginWithGoogle = () => async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:3001/auth/google/callback")
+      const data = await response.data
+      console.log(data)
+      return dispatch({
+        type: 'LOGIN_WITH_GOOGLE',
+        payload: data
+      })
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
+
+
+
 export const login = user => async (dispatch) => {
   try{
     const response = await axios.post('http://localhost:3001/login', {username: user.username, password:user.password});
