@@ -25,6 +25,20 @@ try {
   res.status(404).json(error)
 }
 
+try {
+  router.put('/', async (req, res) => {
+    let { newtype, idsub} = req.body;
+    if(newtype) {
+      const subcategory = await SubCategory.findByPk(idsub)
+      subcategory.type = newtype
+      subcategory.save()
+      res.json({ msg: "Su subcategoría ha sido actualizada con éxito"})
+    }
+  })
+} catch (error) {
+  console.log(error)
+  res.status(404).json(error)
+}
 
 try {
   router.post('/', async(req, res) => {
