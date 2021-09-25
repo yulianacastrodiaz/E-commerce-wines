@@ -10,7 +10,9 @@ const productRouter = require('./product-Crud');
 const grapeRouter = require('./grapes');
 const login = require('./user.js')
 const authRouter = require('./auth.js');
-const reviewRouter = require('./reviews')
+const reviewRouter = require('./reviews');
+const paypal = require ('./paypal');
+const mepa = require ('./mepa');
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -22,6 +24,8 @@ router.use('/grapes', grapeRouter);
 router.use('/reviews', reviewRouter);
 router.use('/', login)
 router.use('/auth', authRouter);
+router.use('/paypal', paypal);
+router.use('/mepa', mepa);
 
 module.exports = router;
 

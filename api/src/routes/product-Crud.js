@@ -176,8 +176,8 @@ router.get('/', async (req, res) => {
       let { age } = req.query
 
       //devuelve ordenadoas por stock disponible
-      //more = más  recientes primeros
-      //less = más antiguos primeros
+      //more = mayor cantidad primeros
+      //less = menor cantidad primeros
       let { stockSort } = req.query
 
 
